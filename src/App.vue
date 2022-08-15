@@ -60,14 +60,27 @@ export default {
                             ]
                         },
                         {
-                            label: 'Academics', icon: '',
+                            label: 'Academics', icon: 'pi pi-fw pi-bookmark',
                             items: [
                                 { label: "Class", icon: '' },
                                 { label: "Subjects", icon: '' },
                                 { label: "Class Room", icon: '' },
                                 { label: "Class Routine", icon: '' }
                             ]
-                        }
+                        },
+                        {
+                            label: 'Reports', icon: 'pi pi-fw pi-file-pdf',
+                            items: [
+                                { label: "Students", icon: '' },
+                                { label: "Teachers", icon: '' },
+                                { label: "Accountent", icon: '' },
+                                { label: "Student Attendance", icon: '' },
+                                { label: "Teacher Attendance", icon: '' }
+                            ]
+                        },
+                        { label: 'Announcement', icon: '' },
+                        { label: 'Accounting', icon: '' },
+                        { label: 'Result', icon: '' }
                     ]
                 },
             ]
