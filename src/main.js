@@ -97,12 +97,21 @@ import TriStateCheckbox from 'primevue/tristatecheckbox';
 import CodeHighlight from './AppCodeHighlight';
 import BlockViewer from './BlockViewer';
 
-router.beforeEach(function(to, from, next) {
+
+import { createPinia } from 'pinia'
+
+
+
+router.beforeEach(function (to, from, next) {
     window.scrollTo(0, 0);
     next();
 });
 
 const app = createApp(AppWrapper);
+const pinia = createPinia()
+
+app.use(pinia)
+
 
 app.config.globalProperties.$appState = reactive({ theme: 'lara-light-indigo', darkTheme: false });
 
