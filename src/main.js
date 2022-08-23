@@ -6,8 +6,10 @@ import './assets/styles/layout.scss';
 import './assets/demo/flags/flags.css';
 
 import { createApp, reactive } from 'vue';
+
 import router from './router';
 import AppWrapper from './AppWrapper.vue';
+
 import PrimeVue from 'primevue/config';
 import AutoComplete from 'primevue/autocomplete';
 import Accordion from 'primevue/accordion';
@@ -98,7 +100,9 @@ import CodeHighlight from './AppCodeHighlight';
 import BlockViewer from './BlockViewer';
 
 
-import { createPinia } from 'pinia'
+import { createPinia } from "pinia";
+
+const pinia = createPinia();
 
 
 
@@ -108,7 +112,6 @@ router.beforeEach(function (to, from, next) {
 });
 
 const app = createApp(AppWrapper);
-const pinia = createPinia()
 
 app.use(pinia)
 

@@ -1,4 +1,5 @@
-
+// dependenices
+const fetchData = require('./fetch');
 
 
 
@@ -8,20 +9,60 @@ const UserService = {};
 
 
 
-UserService.loginUser = async ({ email, password }) => {
-    const data = {
-        "email": email.value,
-        "password": password.value
+UserService.login = async ({ email, password }) => {
+
+    let loginData = {};
+
+    try {
+        // bind login data in an object
+        const data = {
+            "email": email.value,
+            "password": password.value
+        }
+
+
+        const user = await fetchData.post('login', data);
+
+        console.log(user);
+
+        if (user.status === "success") {
+            localStorage.setItem("user", JSON.stringify(user));
+
+            loginData.status = 'success';
+            loginData.data = user;
+        }
+        else {
+            loginData.status = 'fail';
+            loginData.data = null;
+            loginData.error = 'Internal server error';
+        }
     }
-    const response = await fetch(`http://localhost:3000/api/v1/user/login/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        mode: "cors",
-        body: JSON.stringify(data)
-    });
-    return await response.json();
+    catch (err) {
+        loginData.status = 'fail';
+        loginData.data = null;
+        loginData.error = 'Internal server error, please try again.' + err;
+    }
+
+    return loginData;
+}
+
+UserService.logout = () => {
+    // alert("Logout button clicked");
+    localStorage.removeItem("user");
+}
+
+
+UserService.authenticate = () => {
+    try {
+        const user = localStorage.getItem("user");
+        if (user) return true;
+        else return false;
+    }
+    catch (err) {
+        return false;
+    }
 }
 
 
 // export module
-module.exports = UserService;
+export default UserService;

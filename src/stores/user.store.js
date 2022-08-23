@@ -12,7 +12,8 @@ import { defineStore } from "pinia";
 // Store Scafolding
 export const useUserStore = defineStore('User', {
     state: () => ({
-        user: {}
+        user: {},
+        isLoggedIn: false
     }),
     getters: {
         getUser(state) {
@@ -22,6 +23,9 @@ export const useUserStore = defineStore('User', {
     actions: {
         setUser(userData) {
             this.user = userData;
+        },
+        removeUser() {
+            this.user = null;
         }
     }
 })

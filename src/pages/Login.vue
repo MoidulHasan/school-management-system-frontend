@@ -18,10 +18,11 @@
                             <label for="email1" class="block text-900 text-xl font-medium mb-2">Email</label>
                             <InputText id="email1" v-model="email" type="text" class="w-full mb-3" placeholder="Email"
                                 style="padding:1rem;" />
-
+                            <p v-if="emailError" class="text-red-600"> {{ emailError }}</p>
                             <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>
                             <Password id="password1" v-model="password" placeholder="Password" :toggleMask="true"
                                 class="w-full mb-3" inputClass="w-full" inputStyle="padding:1rem"></Password>
+                            <p v-if="passwordError" class="text-red-600 p-1"> {{ passwordError }}</p>
 
                             <div class="flex align-items-center justify-content-between mb-5">
                                 <!-- <div class="flex align-items-center">
@@ -45,11 +46,11 @@
 
 import { ref } from 'vue';
 import UserService from '../service/UserService';
-import { useUserStore } from '../stores/userStore';
 import { useRouter } from 'vue-router'
-
+import { useUserStore } from '../stores/user.store';
 
 const User = useUserStore();
+
 const router = useRouter()
 // const route = useRoute()
 
@@ -59,22 +60,46 @@ const password = ref('');
 // const checked = ref(false);
 
 const errorMessage = ref("");
-
+const emailError = ref('');
+const passwordError = ref('');
 
 const login = async () => {
-    // call api for user login
-    const response = await UserService.loginUser({ email, password });
 
-    // get user data from response
-    const user = response.status === "success" ? response.data.user : false;
+    if (!email.value) {
+        emailError.value = "Please enter your email address."
+    }
+    else if (!password.value) {
+        emailError.value = '';
+        passwordError.value = "Please enter your password."
+    }
+    else {
+        emailError.value = '';
+        passwordError.value = '';
 
-    if (!user) {
-        errorMessage.value = response.message;
-    } else if (user) {
-        errorMessage.value = "";
-        User.user = user;
-        router.push('/')
+        try {
+            // call api for user login
+            const login = await UserService.login({ email, password });
 
+            // get user data from response
+            const user = login.status === "success" ? login.data : false;
+
+            console.log(user);
+
+            if (!user) {
+                errorMessage.value = login.error;
+            } else if (user) {
+                User.user = user;
+                User.isLoggedIn = true;
+
+                console.log("is loged in : ", User.isLoggedIn)
+                errorMessage.value = "";
+                router.push('/');
+            }
+        }
+        catch (err) {
+            console.log(err)
+            errorMessage.value = "Internal Server Error, Please Try Again!" + err;
+        }
     }
 }
 

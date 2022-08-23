@@ -1,14 +1,19 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import App from './App.vue';
+// import { useUserStore } from './stores';
+// import pinia from './stores'
+
+import UserService from './service/UserService'
+
 
 const routes = [
     {
-        path: '/',
+        path: '',
         name: 'app',
         component: App,
         children: [
             {
-                path: '',
+                path: '/',
                 name: 'dashboard',
                 component: () => import('./components/Dashboard.vue')
             },
@@ -172,5 +177,14 @@ const router = createRouter({
     history: createWebHashHistory(),
     routes,
 });
+
+router.beforeEach((to) => {
+    console.log(to);
+    console.log(UserService.authenticate())
+
+    if (!UserService.authenticate() && to.path !== '/login') return '/login';
+
+})
+
 
 export default router;

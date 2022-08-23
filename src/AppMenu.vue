@@ -2,7 +2,6 @@
 	<div class="layout-menu-container">
 		<AppSubmenu :items="model" class="layout-menu" :root="true" @menuitem-click="onMenuItemClick"
 			@keydown="onKeyDown" />
-
 	</div>
 </template>
 

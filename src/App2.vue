@@ -28,8 +28,6 @@ import AppFooter from './AppFooter.vue';
 import { useUserStore } from './stores/user.store';
 import { useRouter } from 'vue-router';
 // import UserService from './service/UserService';
-// import router from './router';
-import routes from './routes'
 
 
 export default {
@@ -47,7 +45,106 @@ export default {
             staticMenuInactive: false,
             overlayMenuActive: false,
             mobileMenuActive: false,
-            menu: routes(this.UserData)
+            menu: {
+                admin: [
+                    {
+                        label: 'Home',
+                        items: [{
+                            label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/'
+                        }]
+                    },
+                    {
+                        label: 'Others', icon: 'pi pi-fw pi-sitemap',
+                        items: [
+                            {
+                                label: 'Attendence', icon: 'pi pi-fw pi-book',
+                                items: [
+                                    { label: "Students Attendence", icon: '' },
+                                    { label: "Teachers Attendence", icon: '' },
+                                ]
+                            },
+                            {
+                                label: 'Users', icon: 'pi pi-fw pi-users',
+                                items: [
+                                    { label: "Admin", icon: '' },
+                                    { label: "Teachers", icon: '' },
+                                    { label: "Accountant", icon: '' },
+                                    { label: "Students", icon: '' }
+                                ]
+                            },
+                            {
+                                label: 'Academics', icon: 'pi pi-fw pi-bookmark',
+                                items: [
+                                    { label: "Class", icon: '' },
+                                    { label: "Subjects", icon: '' },
+                                    { label: "Class Room", icon: '' },
+                                    { label: "Class Routine", icon: '' }
+                                ]
+                            },
+                            {
+                                label: 'Reports', icon: 'pi pi-fw pi-file-pdf',
+                                items: [
+                                    { label: "Students", icon: '' },
+                                    { label: "Teachers", icon: '' },
+                                    { label: "Accountent", icon: '' },
+                                    { label: "Student Attendance", icon: '' },
+                                    { label: "Teacher Attendance", icon: '' }
+                                ]
+                            },
+                            { label: 'Announcement', icon: 'pi pi-fw pi-bell' },
+                            { label: 'Accounting', icon: 'pi pi-fw pi-credit-card' },
+                            { label: 'Result', icon: 'pi pi-fw pi-database' }
+                            // {
+                            //     label: 'Logout', icon: 'pi pi-fw pi-sign-out', command: () => {
+                            //         console.log("logout function called")
+                            //         UserService.logout();
+                            //         this.UserData.removeUser();
+                            //     }
+                            // }
+                        ]
+                    },
+                ],
+                student: [
+                    {
+                        label: 'Home',
+                        items: [{
+                            label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/'
+                        }]
+                    },
+                    {
+                        label: 'Others', icon: 'pi pi-fw pi-sitemap',
+                        items: [
+                            {
+                                label: 'Academics', icon: 'pi pi-fw pi-book',
+                                items: [
+                                    { label: "Class Routine", icon: '' },
+                                    { label: "Exam Routine", icon: '' },
+                                ]
+                            },
+                            {
+                                label: 'Accounts', icon: 'pi pi-fw pi-book',
+                                items: [
+                                    { label: "Current Due", icon: '' },
+                                    { label: "Previous History", icon: '' },
+                                ]
+                            },
+                            { label: 'Results', icon: 'pi pi-fw pi-book' }
+                            // {
+                            //     label: 'Logout', icon: 'pi pi-fw pi-sign-out', command: () => {
+                            //         console.log("logout function called")
+                            //         UserService.logout();
+                            //         this.UserData.removeUser();
+                            //     }
+                            // }
+
+                        ]
+                    }
+                ],
+                accountant: [
+
+                ]
+            }
+
         }
     },
     watch: {
@@ -121,7 +218,6 @@ export default {
                 else if (this.layoutMode === 'overlay')
                     return this.overlayMenuActive;
             }
-
             return true;
         }
     },
@@ -140,24 +236,28 @@ export default {
         logo() {
             return (this.$appState.darkTheme) ? "images/logo-white.svg" : "images/logo.svg";
         },
-        userRole() {
-            const user = JSON.parse(localStorage.getItem('user'));
-            const role = user.data.user.role ? user.data.user.role : null;
-            console.log("role  : ", role)
-            if (role) {
-                const userRole = this.menu[role] ? this.menu[role] : false;
-                return userRole;
-            } else {
-                return false;
-            }
-        },
         sidebarMenu() {
 
-            const role = this.userRole;
+            const user = JSON.parse(localStorage.getItem('user'));
 
-            return role ? role : false;
+            if (!user) {
+                return null;
+            }
+            else {
+                return this.menu[user.role];
+
+            }
         }
     },
+
+    beforeCreate() {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if (user === null) {
+            this.router.push('/login')
+        }
+    },
+
     beforeUpdate() {
         if (this.mobileMenuActive)
             this.addClass(document.body, 'body-overflow-hidden');
@@ -169,7 +269,7 @@ export default {
         'AppMenu': AppMenu,
         // 'AppConfig': AppConfig,
         'AppFooter': AppFooter,
-    }
+    },
 }
 </script>
 
