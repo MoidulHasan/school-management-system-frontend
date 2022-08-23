@@ -1,6 +1,10 @@
 // Dependencies
 const rootUrl = 'http://localhost:3000/api/v1/';
 
+
+const userData = localStorage.getItem("user");
+const token = userData ? JSON.parse(userData).token : '';
+
 // module scafolding
 const fetchData = {};
 
@@ -9,7 +13,10 @@ const fetchData = {};
 fetchData.get = async (url) => {
     const response = await fetch(rootUrl + url, {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
         mode: "cors"
     });
 
@@ -22,7 +29,10 @@ fetchData.post = async (url, data) => {
     console.log(rootUrl)
     const response = await fetch(rootUrl + url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
         mode: "cors",
         body: JSON.stringify(data)
     });
@@ -34,7 +44,10 @@ fetchData.post = async (url, data) => {
 fetchData.put = async (url, data) => {
     const response = await fetch(rootUrl + url, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
         mode: "cors",
         body: JSON.stringify(data)
     });
@@ -44,12 +57,18 @@ fetchData.put = async (url, data) => {
 
 
 // Delete request
-fetchData.delete = async (url) => {
+fetchData.delete = async (url, data) => {
     const response = await fetch(rootUrl + url, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        mode: "cors"
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        mode: "cors",
+        body: JSON.stringify(data)
     });
+
+    console.log(response);
 
     return await response.json();
 }

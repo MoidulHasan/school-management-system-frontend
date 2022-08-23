@@ -33,7 +33,7 @@ const routes = (UserData) => {
                     {
                         label: 'Academics', icon: 'pi pi-fw pi-bookmark',
                         items: [
-                            { label: "Class", icon: '' },
+                            { label: "Class", icon: '', to: '/academic/class' },
                             { label: "Subjects", icon: '' },
                             { label: "Class Room", icon: '' },
                             { label: "Class Routine", icon: '' }

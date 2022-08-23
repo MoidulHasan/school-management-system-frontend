@@ -7,7 +7,7 @@
 
         <div class="layout-main-container">
             <div class="layout-main">
-                <!-- <router-view /> -->
+                <router-view />
             </div>
             <AppFooter />
         </div>

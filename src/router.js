@@ -18,6 +18,12 @@ const routes = [
                 component: () => import('./components/Dashboard.vue')
             },
             {
+                path: '/academic/class',
+                name: 'class',
+                component: () => import('./components/academic/class/index.vue')
+            },
+
+            {
                 path: '/formlayout',
                 name: 'formlayout',
                 component: () => import('./components/FormLayoutDemo.vue')
