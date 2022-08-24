@@ -6,7 +6,7 @@
     <div>
         <div class="col-12">
             <div class="card">
-                <h5>Class</h5>
+                <h5>Class Data Table</h5>
                 <DataTable :value="classData" :paginator="true" class="p-datatable-gridlines" :rows="10" dataKey="id"
                     :rowHover="true" v-model:filters="filters" :filterDisplay="menu" :loading="loading"
                     :filters="filters" responsiveLayout="scroll" :globalFilterFields="['name', 'serialNo']">
@@ -34,7 +34,8 @@
                     </template>
 
                     <template #loading>
-                        Loading table data. Please wait.
+                        <ProgressSpinner style="width:50px;height:50px" strokeWidth="8" fill="var(--surface-ground)"
+                            animationDuration=".5s" />
                     </template>
 
 
@@ -45,7 +46,8 @@
                         </template>
                     </Column>
 
-                    <Column header="Serial No" filterField="data.serialNo" style="min-width:12rem">
+                    <Column :sortable="true" :sortField="'serialNo'" header="Serial No" filterField="data.serialNo"
+                        style="min-width:12rem">
                         <template #body="{ data }">
                             <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{
                                     data.serialNo
@@ -53,7 +55,7 @@
                         </template>
                     </Column>
 
-                    <Column :header="Action" :exportable="false" style="min-width:8rem">
+                    <Column header="Action" :exportable="false" style="min-width:8rem">
                         <template #body="slotProps">
                             <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                                 @click="editClass(slotProps.data)" />
@@ -101,24 +103,24 @@
         <div class="grid grid-cols-2">
             <div class="p-5 w-1/2">
                 <span class="p-float-label">
-                    <InputText id="ClassName" type="text" v-model="className" />
+                    <InputText id="ClassName" type="text" v-model="updateClassName" />
                     <label for="username">Class Name</label>
-                    <p class="text-red-600" v-if="classNameError">{{ classNameError }}</p>
+                    <p class="text-red-600" v-if="updateClassNameError">{{ updateClassNameError }}</p>
                 </span>
             </div>
 
             <div class="p-5 w-1/2">
                 <span class="p-float-label">
-                    <InputNumber :min="1" :showButtons="true" id="serialNo" type="text" v-model="serialNo" />
+                    <InputNumber :min="1" :showButtons="true" id="serialNo" type="text" v-model="updateSerialNo" />
                     <label for="serialNo">Serial No</label>
-                    <p class="text-red-600" v-if="serialNoError">{{ serialNoError }}</p>
+                    <p class="text-red-600" v-if="updateSerialNoError">{{ updateSerialNoError }}</p>
                 </span>
             </div>
         </div>
 
 
         <template #footer>
-            <Button label="Cancel" icon="pi pi-times" @click="closeModal" class="p-button-text" />
+            <Button label="Cancel" icon="pi pi-times" @click="closeUpdateModal" class="p-button-text" />
             <Button type="submit" label="Create" icon="pi pi-check" @click="updateFormSubmitHandler" autofocus />
         </template>
 
@@ -168,8 +170,12 @@ const className = ref('');
 const classNameError = ref();
 const serialNo = ref();
 const serialNoError = ref();
-const currentClassName = ref();
 
+const updateClassName = ref('');
+const updateClassNameError = ref();
+const updateSerialNo = ref();
+const updateSerialNoError = ref();
+const currentClassName = ref();
 
 // methods
 const fetchAllClass = async () => {
@@ -181,16 +187,18 @@ const fetchAllClass = async () => {
     }
 }
 
-// add class
+// show add class modal
 const addClass = async () => {
     showAddClass.value = true;
 }
 
+// close add class modal
 const closeModal = () => {
     showAddClass.value = false;
 };
 
 
+// clear filter
 const clearFilter = () => {
     filters.value = {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -205,13 +213,18 @@ const clearFilter = () => {
     }
 }
 
-// edit class 
+// show edit class modal
 const editClass = (data) => {
     console.log(data);
     showUpdateClass.value = true;
     currentClassName.value = data.name;
-    className.value = data.name;
-    serialNo.value = data.serialNo;
+    updateClassName.value = data.name;
+    updateSerialNo.value = data.serialNo;
+}
+
+// close update class modal
+const closeUpdateModal = () => {
+    showUpdateClass.value = false;
 }
 
 // delete class 
@@ -280,18 +293,15 @@ const addFormSubmitHandler = async () => {
 
 
 const updateFormSubmitHandler = async () => {
-    console.log(className.value, serialNo.value);
-    classNameError.value = className.value.length > 0 ? "" : "Class Name Required";
-    serialNoError.value = serialNo.value > 0 ? "" : "Class Serial No Required";
+    updateClassNameError.value = updateClassName.value.length > 0 ? "" : "Class Name Required";
+    updateSerialNoError.value = updateSerialNo.value > 0 ? "" : "Class Serial No Required";
 
-    if (!classNameError.value && !serialNoError.value) {
+    if (!classNameError.value && !updateSerialNoError.value) {
         const classData = {
             currentClassName: currentClassName.value,
-            className: className.value,
-            serialNo: serialNo.value
+            className: updateClassName.value,
+            serialNo: updateSerialNo.value
         };
-
-        console.log(classData);
 
         const classAdd = await fetchData.put('academic/class', classData);
 

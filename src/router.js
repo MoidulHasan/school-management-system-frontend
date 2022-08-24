@@ -22,7 +22,11 @@ const routes = [
                 name: 'class',
                 component: () => import('./components/academic/class/index.vue')
             },
-
+            {
+                path: '/academic/subject',
+                name: 'subject',
+                component: () => import('./components/academic/subject/index.vue')
+            },
             {
                 path: '/formlayout',
                 name: 'formlayout',
