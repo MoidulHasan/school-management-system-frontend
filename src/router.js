@@ -28,6 +28,11 @@ const routes = [
                 component: () => import('./components/academic/subject/index.vue')
             },
             {
+                path: '/academic/classroom',
+                name: 'classroom',
+                component: () => import('./components/academic/classroom/index.vue')
+            },
+            {
                 path: '/formlayout',
                 name: 'formlayout',
                 component: () => import('./components/FormLayoutDemo.vue')
