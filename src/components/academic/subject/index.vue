@@ -213,8 +213,9 @@ const fetchAllsubject = async () => {
 
     if (subjectInfo) {
         subjectData.value = subjectInfo.data;
-        loading.value = false;
     }
+    loading.value = false;
+
 }
 
 

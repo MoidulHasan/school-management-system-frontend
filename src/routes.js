@@ -36,7 +36,8 @@ const routes = (UserData) => {
                             { label: "Class", icon: '', to: '/academic/class' },
                             { label: "Subjects", icon: '', to: '/academic/subject' },
                             { label: "Class Room", icon: '', to: '/academic/classroom' },
-                            { label: "Class Routine", icon: '' }
+                            { label: "Class Time", icon: '', to: '/academic/classtime' },
+                            { label: "Class Routine", icon: '', to: '' }
                         ]
                     },
                     {

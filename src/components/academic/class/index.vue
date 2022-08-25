@@ -181,10 +181,13 @@ const currentClassName = ref();
 const fetchAllClass = async () => {
     const classInfo = await fetchData.get('academic/class');
 
+    console.log(classInfo);
+
     if (classInfo) {
         classData.value = classInfo.data;
-        loading.value = false;
     }
+    loading.value = false;
+
 }
 
 // show add class modal

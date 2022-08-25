@@ -11,66 +11,85 @@ const fetchData = {};
 
 // get requiest
 fetchData.get = async (url) => {
-    const response = await fetch(rootUrl + url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        mode: "cors"
-    });
+    try {
+        const response = await fetch(rootUrl + url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            mode: "cors"
+        });
 
-    return await response.json();
+        return await response.json();
+    } catch (err) {
+        return false;
+    }
+
 }
 
 
 // POST request
 fetchData.post = async (url, data) => {
-    console.log(rootUrl)
-    const response = await fetch(rootUrl + url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        mode: "cors",
-        body: JSON.stringify(data)
-    });
+    try {
+        const response = await fetch(rootUrl + url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            mode: "cors",
+            body: JSON.stringify(data)
+        });
 
-    return await response.json();
+        return await response.json();
+    }
+    catch (err) {
+        return false;
+    }
 }
 
 // PUT request
 fetchData.put = async (url, data) => {
-    const response = await fetch(rootUrl + url, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        mode: "cors",
-        body: JSON.stringify(data)
-    });
+    try {
+        const response = await fetch(rootUrl + url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            mode: "cors",
+            body: JSON.stringify(data)
+        });
 
-    return await response.json();
+        return await response.json();
+    }
+    catch (err) {
+        return false;
+    }
 }
 
 
 // Delete request
 fetchData.delete = async (url, data) => {
-    const response = await fetch(rootUrl + url, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        mode: "cors",
-        body: JSON.stringify(data)
-    });
+    try {
+        const response = await fetch(rootUrl + url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            mode: "cors",
+            body: JSON.stringify(data)
+        });
 
-    console.log(response);
+        console.log(response);
 
-    return await response.json();
+        return await response.json();
+    }
+    catch (err) {
+        return false;
+    }
 }
 
 // export module

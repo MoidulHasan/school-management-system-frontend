@@ -18,20 +18,33 @@ const routes = [
                 component: () => import('./components/Dashboard.vue')
             },
             {
-                path: '/academic/class',
-                name: 'class',
-                component: () => import('./components/academic/class/index.vue')
+                path: '/academic',
+                // name: 'academic',
+                // component: App,
+                children: [
+                    {
+                        path: '/academic/class',
+                        name: 'class',
+                        component: () => import('./components/academic/class/index.vue')
+                    },
+                    {
+                        path: '/academic/subject',
+                        name: 'subject',
+                        component: () => import('./components/academic/subject/index.vue')
+                    },
+                    {
+                        path: '/academic/classroom',
+                        name: 'classroom',
+                        component: () => import('./components/academic/classroom/index.vue')
+                    },
+                    {
+                        path: '/academic/classtime',
+                        name: 'classtime',
+                        component: () => import('./components/academic/classtime/index.vue')
+                    },
+                ]
             },
-            {
-                path: '/academic/subject',
-                name: 'subject',
-                component: () => import('./components/academic/subject/index.vue')
-            },
-            {
-                path: '/academic/classroom',
-                name: 'classroom',
-                component: () => import('./components/academic/classroom/index.vue')
-            },
+
             {
                 path: '/formlayout',
                 name: 'formlayout',

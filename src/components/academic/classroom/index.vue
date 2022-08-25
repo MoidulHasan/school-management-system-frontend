@@ -140,7 +140,7 @@ const loading = ref(true);
 
 
 // Add form field
-const classRoomNumber = ref('');
+const classRoomNumber = ref();
 const classRoomNumberError = ref();
 
 const updateClassRoomNumber = ref('');
@@ -153,8 +153,8 @@ const fetchAllClassRoom = async () => {
 
     if (classRoomInfo) {
         classRoomData.value = classRoomInfo.data;
-        loading.value = false;
     }
+    loading.value = false;
 }
 
 // show add class modal
@@ -215,7 +215,7 @@ const deleteClassRoom = async (data) => {
                 toast.add({ severity: 'error', summary: 'Error!', detail: classRoomDelete.message, life: 3000 });
             }
             else {
-                toast.add({ severity: 'warn', summary: 'Sorry!', detail: classRoomDelete.message, life: 3000 });
+                toast.add({ severity: 'warn', summary: 'Error!', detail: 'Internal Server Error', life: 3000 });
             }
         },
         reject: () => {
@@ -246,7 +246,7 @@ const addFormSubmitHandler = async () => {
             fetchAllClassRoom();
             showAddClassRoom.value = false;
         } else {
-            toast.add({ severity: 'warn', summary: 'Sorry!', detail: classRoomAdd.message, life: 3000 });
+            toast.add({ severity: 'warn', summary: 'Error!', detail: 'Internal Server Error.', life: 3000 });
         }
     }
 }
@@ -271,7 +271,7 @@ const updateFormSubmitHandler = async () => {
             fetchAllClassRoom();
             showUpdateClassRoom.value = false;
         } else {
-            toast.add({ severity: 'warn', summary: 'Sorry!', detail: classRoomAdd.message, life: 3000 });
+            toast.add({ severity: 'warn', summary: 'Error!', detail: 'Internal Server Error.', life: 3000 });
         }
     }
 }
