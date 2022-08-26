@@ -46,8 +46,7 @@
                         </template>
                     </Column>
 
-                    <Column field="endTime" header="Class Start Time" filterField="data.endTime"
-                        style="min-width:12rem">
+                    <Column field="endTime" header="Class End Time" filterField="data.endTime" style="min-width:12rem">
                         <template #body="{ data }">
                             {{ data.endTime }}
                         </template>

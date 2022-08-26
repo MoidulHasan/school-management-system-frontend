@@ -42,6 +42,11 @@ const routes = [
                         name: 'classtime',
                         component: () => import('./components/academic/classtime/index.vue')
                     },
+                    {
+                        path: '/academic/class-routine',
+                        name: 'class-routine',
+                        component: () => import('./components/academic/classRoutine/index.vue')
+                    },
                 ]
             },
 
