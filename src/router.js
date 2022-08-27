@@ -3,180 +3,206 @@ import App from './App.vue';
 // import { useUserStore } from './stores';
 // import pinia from './stores'
 
-import UserService from './service/UserService'
+// import UserService from './service/UserService'
 
+
+// const routes = [
+//     {
+//         path: '/',
+//         name: 'app',
+//         component: App,
+//         children: [
+//             {
+//                 path: '/',
+//                 name: 'dashboard',
+//                 // component: () => import('./components/Dashboard.vue')
+//             },
+//             {
+//                 path: '/admission',
+//                 // name: 'Admission',
+//                 children: [
+//                     {
+//                         path: '/admission/applications',
+//                         // name: 'admission-applications',
+//                         component: () => import('./pages/admission/applications.vue')
+//                     },
+//                     {
+//                         path: '/admission/admit',
+//                         // name: 'admit-student',
+//                         component: () => import('./pages/admission/admit.vue')
+//                     }
+//                 ]
+//             },
+//             {
+//                 path: '/academic',
+//                 children: [
+//                     {
+//                         path: '/academic/class',
+//                         // name: 'class',
+//                         component: () => import('./components/academic/class/index.vue')
+//                     },
+//                     {
+//                         path: '/academic/subject',
+//                         // name: 'subject',
+//                         component: () => import('./components/academic/subject/index.vue')
+//                     },
+//                     {
+//                         path: '/academic/classroom',
+//                         // name: 'classroom',
+//                         component: () => import('./components/academic/classroom/index.vue')
+//                     },
+//                     {
+//                         path: '/academic/classtime',
+//                         // name: 'classtime',
+//                         component: () => import('./components/academic/classtime/index.vue')
+//                     },
+//                     {
+//                         path: '/academic/class-routine',
+//                         // name: 'class-routine',
+//                         component: () => import('./components/academic/classRoutine/index.vue')
+//                     }
+//                 ]
+//             },
+//             {
+//                 path: '/users',
+//                 children: [
+//                     {
+//                         path: '/users/students',
+//                         // name: 'class',
+//                         component: () => import('./pages/users/student/index.vue')
+//                     },
+//                     {
+//                         path: '/users/teachers',
+//                         // name: 'subject',
+//                         component: () => import('./pages/users/teachers')
+//                     }
+//                 ]
+//             },
+//             {
+//                 path: '/reports',
+//                 children: [
+//                     {
+//                         path: '/reports/students',
+//                         // name: 'class',
+//                         component: () => import('./pages/reports/student/index.vue')
+//                     },
+//                     {
+//                         path: '/reports/teachers',
+//                         // name: 'subject',
+//                         component: () => import('./pages/reports/teachers/index.vue')
+//                     }
+//                 ]
+//             }
+//             // {
+//             //     path: '/reports',
+//             //     children: [
+//             //         {
+//             //             path: '/reports/students',
+//             //             // name: 'Students',
+//             //             component: () => import('./pages/reports/student')
+//             //         },
+//             //         {
+//             //             path: '/reports/teachers',
+//             //             // name: 'Teachers',
+//             //             component: () => import('./pages/reports/teachers')
+//             //         }
+//             //     ]
+//             // }
+//         ]
+//     },
+//     {
+//         path: '/login',
+//         name: 'login',
+//         component: () => import('./pages/Login.vue')
+//     },
+//     {
+//         path: '/landing',
+//         name: 'landing',
+//         component: () => import('./pages/LandingDemo.vue')
+//     },
+//     {
+//         path: '/error',
+//         name: 'error',
+//         component: () => import('./pages/Error.vue')
+//     },
+//     {
+//         path: '/notfound',
+//         name: 'notfound',
+//         component: () => import('./pages/NotFound.vue')
+//     },
+//     {
+//         path: '/access',
+//         name: 'access',
+//         component: () => import('./pages/Access.vue')
+//     }
+// ];
 
 const routes = [
     {
-        path: '',
+        path: '/',
         name: 'app',
         component: App,
         children: [
             {
                 path: '/',
                 name: 'dashboard',
-                component: () => import('./components/Dashboard.vue')
+                // component: () => import('./components/Dashboard.vue')
             },
             {
-                path: '/academic',
-                // name: 'academic',
-                // component: App,
-                children: [
-                    {
-                        path: '/academic/class',
-                        name: 'class',
-                        component: () => import('./components/academic/class/index.vue')
-                    },
-                    {
-                        path: '/academic/subject',
-                        name: 'subject',
-                        component: () => import('./components/academic/subject/index.vue')
-                    },
-                    {
-                        path: '/academic/classroom',
-                        name: 'classroom',
-                        component: () => import('./components/academic/classroom/index.vue')
-                    },
-                    {
-                        path: '/academic/classtime',
-                        name: 'classtime',
-                        component: () => import('./components/academic/classtime/index.vue')
-                    },
-                    {
-                        path: '/academic/class-routine',
-                        name: 'class-routine',
-                        component: () => import('./components/academic/classRoutine/index.vue')
-                    },
-                ]
-            },
-
-            {
-                path: '/formlayout',
-                name: 'formlayout',
-                component: () => import('./components/FormLayoutDemo.vue')
+                path: '/admission/applications',
+                // name: 'admission-applications',
+                component: () => import('./pages/admission/applications.vue')
             },
             {
-                path: '/input',
-                name: 'input',
-                component: () => import('./components/InputDemo.vue')
+                path: '/admission/admit',
+                // name: 'admit-student',
+                component: () => import('./pages/admission/admit.vue')
             },
             {
-                path: '/floatlabel',
-                name: 'floatlabel',
-                component: () => import('./components/FloatLabelDemo.vue')
+                path: '/academic/class',
+                // name: 'class',
+                component: () => import('./components/academic/class/index.vue')
             },
             {
-                path: '/invalidstate',
-                name: 'invalidstate',
-                component: () => import('./components/InvalidStateDemo.vue')
+                path: '/academic/subject',
+                // name: 'subject',
+                component: () => import('./components/academic/subject/index.vue')
             },
             {
-                path: '/button',
-                name: 'button',
-                component: () => import('./components/ButtonDemo.vue')
+                path: '/academic/classroom',
+                // name: 'classroom',
+                component: () => import('./components/academic/classroom/index.vue')
             },
             {
-                path: '/table',
-                name: 'table',
-                component: () => import('./components/TableDemo.vue')
+                path: '/academic/classtime',
+                // name: 'classtime',
+                component: () => import('./components/academic/classtime/index.vue')
             },
             {
-                path: '/list',
-                name: 'list',
-                component: () => import('./components/ListDemo.vue')
+                path: '/academic/class-routine',
+                // name: 'class-routine',
+                component: () => import('./components/academic/classRoutine/index.vue')
             },
             {
-                path: '/tree',
-                name: 'tree',
-                component: () => import('./components/TreeDemo.vue')
+                path: '/users/students',
+                // name: 'class',
+                component: () => import('./pages/users/student/index.vue')
             },
             {
-                path: '/panel',
-                name: 'panel',
-                component: () => import('./components/PanelsDemo.vue')
+                path: '/users/teachers',
+                // name: 'subject',
+                component: () => import('./pages/users/teachers')
             },
             {
-                path: '/overlay',
-                name: 'overlay',
-                component: () => import('./components/OverlayDemo.vue')
+                path: '/reports/students',
+                // name: 'class',
+                component: () => import('./pages/reports/student/index.vue')
             },
             {
-                path: '/media',
-                name: 'media',
-                component: () => import('./components/MediaDemo.vue')
+                path: '/reports/teachers',
+                // name: 'subject',
+                component: () => import('./pages/reports/teachers/index.vue')
             },
-            {
-                path: '/menu',
-                component: () => import('./components/MenuDemo.vue'),
-                children: [
-                    {
-                        path: '',
-                        component: () => import('./components/menu/PersonalDemo.vue')
-                    },
-                    {
-                        path: '/menu/seat',
-                        component: () => import('./components/menu/SeatDemo.vue')
-                    },
-                    {
-                        path: '/menu/payment',
-                        component: () => import('./components/menu/PaymentDemo.vue')
-                    },
-                    {
-                        path: '/menu/confirmation',
-                        component: () => import('./components/menu/ConfirmationDemo.vue')
-                    },
-                ],
-            },
-            {
-                path: '/messages',
-                name: 'messages',
-                component: () => import('./components/MessagesDemo.vue')
-            },
-            {
-                path: '/file',
-                name: 'file',
-                component: () => import('./components/FileDemo.vue')
-            },
-            {
-                path: '/chart',
-                name: 'chart',
-                component: () => import('./components/ChartDemo.vue')
-            },
-            {
-                path: '/misc',
-                name: 'misc',
-                component: () => import('./components/MiscDemo.vue')
-            },
-            {
-                path: '/crud',
-                name: 'crud',
-                component: () => import('./pages/CrudDemo.vue')
-            },
-            {
-                path: '/timeline',
-                name: 'timeline',
-                component: () => import('./pages/TimelineDemo.vue')
-            },
-            {
-                path: '/empty',
-                name: 'empty',
-                component: () => import('./components/EmptyPage.vue')
-            },
-            {
-                path: '/documentation',
-                name: 'documentation',
-                component: () => import('./components/Documentation.vue')
-            },
-            {
-                path: '/blocks',
-                name: 'blocks',
-                component: () => import('./components/BlocksDemo.vue')
-            },
-            {
-                path: '/icons',
-                name: 'icons',
-                component: () => import('./components/IconsDemo.vue')
-            }
         ]
     },
     {
@@ -211,13 +237,16 @@ const router = createRouter({
     routes,
 });
 
-router.beforeEach((to) => {
-    console.log(to);
-    console.log(UserService.authenticate())
 
-    if (!UserService.authenticate() && to.path !== '/login') return '/login';
 
-})
+// router.beforeEach((to) => {
+//     console.log(to);
+//     console.log(UserService.authenticate())
+
+//     if (!UserService.authenticate() && to.path !== '/login') return '/login';
+// })
+
+
 
 
 export default router;

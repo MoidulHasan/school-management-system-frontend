@@ -107,6 +107,8 @@ const pinia = createPinia();
 
 
 router.beforeEach(function (to, from, next) {
+    console.log("To : ", to);
+    console.log("from : ", from);
     window.scrollTo(0, 0);
     next();
 });

@@ -32,8 +32,10 @@
 		"primeicons": "^5.0.0",
 		"primevue": "^3.12.2",
 		"prismjs": "1.9.0",
+		"vee-validate": "^4.6.6",
 		"vue": "3.2.9",
 		"vue-hooks-form": "^0.2.2",
-		"vue-router": "^4.0.0-0"
+		"vue-router": "^4.0.0-0",
+		"yup": "^0.32.11"
 	}
 }

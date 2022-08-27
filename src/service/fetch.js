@@ -92,5 +92,7 @@ fetchData.delete = async (url, data) => {
     }
 }
 
+
+
 // export module
 module.exports = fetchData;

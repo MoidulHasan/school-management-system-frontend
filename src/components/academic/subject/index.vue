@@ -215,7 +215,6 @@ const fetchAllsubject = async () => {
         subjectData.value = subjectInfo.data;
     }
     loading.value = false;
-
 }
 
 

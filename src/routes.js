@@ -15,19 +15,26 @@ const routes = (UserData) => {
                 label: 'Others', icon: 'pi pi-fw pi-sitemap',
                 items: [
                     {
+                        label: 'Admission', icon: 'pi pi-fw pi-book',
+                        items: [
+                            { label: "Applications", icon: '', to: '/admission/applications' },
+                            { label: "Admit Student", icon: '', to: '/admission/admit' },
+                        ]
+                    },
+                    {
                         label: 'Attendence', icon: 'pi pi-fw pi-book',
                         items: [
-                            { label: "Students Attendence", icon: '' },
-                            { label: "Teachers Attendence", icon: '' },
+                            { label: "Staff's Attendence", icon: '' },
+                            { label: "Student's Attendence", icon: '' },
                         ]
                     },
                     {
                         label: 'Users', icon: 'pi pi-fw pi-users',
                         items: [
-                            { label: "Admin", icon: '' },
-                            { label: "Teachers", icon: '' },
-                            { label: "Accountant", icon: '' },
-                            { label: "Students", icon: '' }
+                            // { label: "Admin", icon: '' },
+                            { label: "Teachers", icon: '', to: '/users/teachers' },
+                            // { label: "Accountant", icon: '' },
+                            { label: "Students", icon: '', to: '/users/students' }
                         ]
                     },
                     {
@@ -43,13 +50,21 @@ const routes = (UserData) => {
                     {
                         label: 'Reports', icon: 'pi pi-fw pi-file-pdf',
                         items: [
-                            { label: "Students", icon: '' },
-                            { label: "Teachers", icon: '' },
-                            { label: "Accountent", icon: '' },
-                            { label: "Student Attendance", icon: '' },
-                            { label: "Teacher Attendance", icon: '' }
+                            { label: "Students", icon: '', to: '/reports/students' },
+                            { label: "Teachers", icon: '', to: '/reports/teachers' }
                         ]
                     },
+
+                    // {
+                    //     label: 'Reports', icon: 'pi pi-fw pi-file-pdf',
+                    //     items: [
+                    //         { label: "Students", icon: '', to: 'reports/students' },
+                    //         { label: "Teachers", icon: '', to: 'reports/teachers' },
+                    //         // { label: "Accountent", icon: '' },
+                    //         // { label: "Student Attendance", icon: '' },
+                    //         // { label: "Teacher Attendance", icon: '' }
+                    //     ]
+                    // },
                     { label: 'Announcement', icon: 'pi pi-fw pi-bell' },
                     { label: 'Accounting', icon: 'pi pi-fw pi-credit-card' },
                     { label: 'Result', icon: 'pi pi-fw pi-database' },
@@ -78,7 +93,7 @@ const routes = (UserData) => {
                         label: 'Academics', icon: 'pi pi-fw pi-book',
                         items: [
                             { label: "Class Routine", icon: '' },
-                            { label: "Exam Routine", icon: '' },
+                            // { label: "Exam Routine", icon: '' },
                         ]
                     },
                     {
@@ -88,7 +103,8 @@ const routes = (UserData) => {
                             { label: "Previous History", icon: '' },
                         ]
                     },
-                    { label: 'Results', icon: 'pi pi-fw pi-book' },
+                    { label: 'Announcement', icon: 'pi pi-fw pi-bell' },
+                    // { label: 'Results', icon: 'pi pi-fw pi-book' },
                     {
                         label: 'Logout', icon: 'pi pi-fw pi-sign-out', command: () => {
                             console.log("logout function called")
@@ -101,8 +117,37 @@ const routes = (UserData) => {
                 ]
             }
         ],
-        accountant: [
+        teacher: [
+            {
+                label: 'Home',
+                items: [{
+                    label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/'
+                }]
+            },
+            {
+                label: 'Others', icon: 'pi pi-fw pi-sitemap',
+                items: [
+                    {
+                        label: 'Academics', icon: 'pi pi-fw pi-book',
+                        items: [
+                            { label: "Class Routine", icon: '' },
+                            // { label: "Exam Routine", icon: '' },
+                        ]
+                    },
+                    { label: 'Announcement', icon: 'pi pi-fw pi-bell' },
 
+                    // { label: 'Results', icon: 'pi pi-fw pi-book' },
+                    {
+                        label: 'Logout', icon: 'pi pi-fw pi-sign-out', command: () => {
+                            console.log("logout function called")
+                            UserService.logout();
+                            UserData.removeUser();
+                            router.push('/login');
+                        }
+                    }
+
+                ]
+            }
         ]
     }
 }

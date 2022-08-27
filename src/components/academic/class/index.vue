@@ -187,7 +187,6 @@ const fetchAllClass = async () => {
         classData.value = classInfo.data;
     }
     loading.value = false;
-
 }
 
 // show add class modal
